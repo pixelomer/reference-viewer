@@ -6,6 +6,8 @@ import path from "path";
 const router = Router();
 export default router;
 
+const extensions = [ "png", "jpg", "jpeg" ];
+
 let files: string[] = [];
 
 //FIXME: Involves storing the same path in memory thousands of times
@@ -15,6 +17,8 @@ for (const dirPath of IMAGE_DIRS) {
 	let entry: fs.Dirent;
 	while ((entry = dir.readSync()) != null) {
 		if (!entry.isFile()) continue;
+		const fileExtension = entry.name.match(/([^.]*)$/)[1].toLowerCase();
+		if (!extensions.includes(fileExtension)) continue;
 		files.push(path.join(dirPath, entry.name));
 	}
 	dir.closeSync();
