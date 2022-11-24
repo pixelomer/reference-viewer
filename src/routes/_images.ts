@@ -2,26 +2,22 @@ import { Router } from "express";
 import { IMAGE_DIRS } from "../config";
 import fs from "fs";
 import path from "path";
+import { glob } from "glob";
 
 const router = Router();
 export default router;
 
-const extensions = [ "png", "jpg", "jpeg" ];
+const extensions = [ ".png", ".jpg", ".jpeg" ];
 
 let files: string[] = [];
 
-//FIXME: Involves storing the same path in memory thousands of times
-//       Not exactly optimized
-for (const dirPath of IMAGE_DIRS) {
-	const dir = fs.opendirSync(dirPath);
-	let entry: fs.Dirent;
-	while ((entry = dir.readSync()) != null) {
-		if (!entry.isFile()) continue;
-		const fileExtension = entry.name.match(/([^.]*)$/)[1].toLowerCase();
-		if (!extensions.includes(fileExtension)) continue;
-		files.push(path.join(dirPath, entry.name));
+//FIXME: Very inefficient
+for (const pattern of IMAGE_DIRS) {
+	for (const file of glob.sync(pattern, { nodir: true })) {
+		const extension = path.extname(file).toLowerCase();
+		if (!extensions.includes(extension)) continue;
+		files.push(file);
 	}
-	dir.closeSync();
 }
 
 console.log("Found", files.length, "images");
