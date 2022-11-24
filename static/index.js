@@ -92,7 +92,9 @@
 				return;
 			}
 			index--;
-			resetTimer();
+			if (!paused) {
+				resetTimer();
+			}
 			setActiveImage(images[index]);
 		},
 		
@@ -109,7 +111,9 @@
 			else {
 				index++;
 			}
-			resetTimer();
+			if (!paused) {
+				resetTimer();
+			}
 			setActiveImage(images[index]);
 		},
 
