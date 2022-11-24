@@ -1,0 +1,17 @@
+*
+!src/
+!src/*
+!src/*/*
+!static/
+!static/*
+!static/icons/*
+!views/
+!views/*
+!.gitignore
+!Dockerfile
+!package.json
+!tsconfig.json
+!yarn.lock
+!.gitattributes
+!README.md
+**/.DS_Store

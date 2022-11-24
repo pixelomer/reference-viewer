@@ -1,0 +1,24 @@
+{
+  "name": "reference-viewer",
+  "version": "1.0.0",
+  "description": "Self-hosted reference image viewer",
+  "main": "dist/index.js",
+  "license": "UNLICENSED",
+  "author": "pixelomer",
+  "repository": "https://github.com/pixelomer/reference-viewer.git",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ."
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.18.1",
+    "pug": "^3.0.2",
+    "typescript": "^4.8.3"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.7.18"
+  }
+}
