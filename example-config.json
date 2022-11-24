@@ -1,7 +1,7 @@
 {
 	"port": 8011,
 	"paths": [
-		"/path/to/reference/images",
-		"/path/to/other/reference/images"
+		"/path/to/reference/images/*",
+		"/path/to/other/reference/images/*"
 	]
 }
