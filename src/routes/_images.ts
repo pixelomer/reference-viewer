@@ -23,8 +23,8 @@ for (const pattern of IMAGE_DIRS) {
 console.log("Found", files.length, "images");
 export const imagesMax = files.length;
 
-router.get("/images/:imageID([0-9]+)", (req, res) => {
-	const imageID = parseInt(req.params.imageID);
+router.get(/^\/images\/([0-9]+)$/, (req, res) => {
+	const imageID = parseInt(req.params[0]);
 	if (imageID < imagesMax) {
 		fs.createReadStream(files[imageID]).pipe(res);
 	}
