@@ -114,16 +114,24 @@
 		},
 
 		configure: (button) => {
-			const input = prompt("Seconds per reference?");
+			const input = prompt("Seconds per reference? (write seconds or mm:ss)");
 			if (input == null) {
 				return;
 			}
-			const newValue = parseInt(input);
-			if (isNaN(newValue) || (newValue < 0)) {
-				alert("Invalid input");
-				return;
+			let newValue;
+			const comps = input.split(":").map((c) => parseInt(c));
+			if (comps.length !== 2 || isNaN(comps[0]) || isNaN(comps[1]) ||
+				comps[0] < 0 || comps[1] < 0 || comps[1] >= 60 ||
+				((newValue = comps[0] * 60 + comps[1]) <= 0))
+			{
+				newValue = parseInt(input);
+				if (isNaN(newValue) || newValue <= 0 || comps.length > 1) {
+					alert("Invalid input");
+					return;
+				}
 			}
 			secondsPerReference = newValue;
+			setRemaining(null);
 			window.localStorage.setItem("secs", newValue);
 		}
 	};
