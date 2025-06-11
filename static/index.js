@@ -28,9 +28,7 @@
 	}
 
 	function setActiveImage(image) {
-		if (!paused) {
-			setRemaining(null);
-		}
+		setRemaining(null);
 		referenceElem.style = `background-image: url(/images/${image})`;
 	}
 
@@ -64,7 +62,9 @@
 
 	function resetTimer() {
 		clearInterval(timerInterval);
-		timerInterval = setInterval(timerTick, 1000);
+		if (!paused) {
+			timerInterval = setInterval(timerTick, 1000);
+		}
 	}
 
 	const images = [ randomImage() ];
