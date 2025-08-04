@@ -1,3 +1,5 @@
 # reference-viewer
 
-Self-hosted reference image viewer
+Simple self-hosted reference image viewer
+
+![screenshot](screenshot.webp)

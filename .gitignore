@@ -15,4 +15,5 @@
 !.gitattributes
 !example-config.json
 !README.md
+!screenshot.webp
 **/.DS_Store
