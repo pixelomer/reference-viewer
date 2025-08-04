@@ -133,6 +133,29 @@
             secondsPerReference = newValue;
             setRemaining(null);
             window.localStorage.setItem("secs", newValue);
+        },
+
+        refresh: (button) => {
+            if (!confirm("Do you want to reload the image list?")) {
+                return;
+            }
+
+            (async()=>{
+                try {
+                    const res = await fetch("/api/reload", { method: "POST" });
+                    if (!res.ok) {
+                        console.error(await res.text());
+                        throw new Error("Non-OK status code: " + res.status);
+                    }
+                    const json = await res.json();
+                    alert(`Reload completed: ${json.count} image${json.count === 1 ? "" : "s"} loaded`);
+                    window.location.reload();
+                }
+                catch (err) {
+                    console.error(err);
+                    alert("Reload failed, check logs");
+                }
+            })();
         }
     };
 
@@ -154,6 +177,9 @@
                 break;
             case "Escape":
                 handleButton("configure");
+                break;
+            case "KeyR":
+                handleButton("refresh");
                 break;
         }
     }

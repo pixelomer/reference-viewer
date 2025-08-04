@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { imagesMax } from "./_images";
+import { getImagesMax } from "./_images";
 
 const router = Router();
 export default router;
 
 router.get("/", (req, res) => {
-    res.render("homepage", { imagesMax });
+    res.render("homepage", { imagesMax: getImagesMax() });
 });
