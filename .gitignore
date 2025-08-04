@@ -16,4 +16,7 @@
 !example-config.json
 !README.md
 !screenshot.webp
+!.github/
+!.github/workflows/
+!.github/workflows/push-to-ghcr.yml
 **/.DS_Store
