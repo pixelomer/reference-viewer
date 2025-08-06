@@ -67,7 +67,13 @@
         }
     }
 
-    const images = [ randomImage() ];
+    function preloadImage(image) {
+        const img = new Image();
+        img.src = `/images/${image}`;
+    }
+
+    const images = [ randomImage(), randomImage() ];
+    preloadImage(images[1]);
     let index = 0;
 
     setActiveImage(images[index]);
@@ -97,17 +103,15 @@
         },
         
         next: (button) => {
+            index++;
             if (index === (images.length - 1)) {
-                images.push(randomImage());
+                const newImage = randomImage();
+                images.push(newImage);
+                preloadImage(newImage);
                 if (index === 99) {
                     images.splice(0, 1);
+                    index--;
                 }
-                else {
-                    index++;
-                }
-            }
-            else {
-                index++;
             }
             resetTimer();
             setActiveImage(images[index]);
