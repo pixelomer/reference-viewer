@@ -7,7 +7,7 @@ import { glob } from "glob";
 const router = Router();
 export default router;
 
-const extensions = [ ".png", ".jpg", ".jpeg" ];
+const extensions = [ ".png", ".jpg", ".jpeg", ".webp", ".avif", ".bmp" ];
 
 let files: string[];
 
